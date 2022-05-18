@@ -2,13 +2,23 @@ import React, { useState } from "react";
 import "./Favorites.css";
 
 const Favorites = () => {
-  const [title, setTitle] = useState("Новый список");
+  const [title, setTitle] = useState("");
   const [movies, setMovies] = useState([
     { imdbID: "tt0068646", title: "The Godfather", year: 1972 },
   ]);
+
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
   return (
     <div className="favorites">
-      <input value="Новый список" className="favorites__name" />
+      <input
+        placeholder="Новый список"
+        onChange={onChangeTitle}
+        value={title}
+        className="favorites__name"
+      />
       <ul className="favorites__list">
         {movies.map((item) => {
           return (

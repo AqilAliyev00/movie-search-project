@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./SearchBox.css";
+import { getMovieListAction } from "../../redux-manager/Movies/actions";
 
 const SearchBox = () => {
+  const dispatch = useDispatch();
+
   const [searchLine, setSearchLine] = useState("");
 
   const searchLineChangeHandler = (e) => {
@@ -9,6 +13,7 @@ const SearchBox = () => {
   };
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
+    dispatch(getMovieListAction(searchLine));
   };
 
   return (
