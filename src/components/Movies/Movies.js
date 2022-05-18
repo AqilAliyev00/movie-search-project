@@ -5,11 +5,8 @@ import { getMovieListSelector } from "../../redux-manager/Movies/selectors";
 import "./Movies.css";
 
 const Movies = () => {
-  const [movies, setMovies] = useState();
-  const movieList = useSelector(getMovieListSelector);
-  useEffect(() => {
-    setMovies(movieList);
-  }, [movieList]);
+  const movies = useSelector(getMovieListSelector);
+
   return (
     <ul className="movies">
       {movies &&

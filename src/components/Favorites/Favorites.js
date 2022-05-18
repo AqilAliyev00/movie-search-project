@@ -5,17 +5,15 @@ import { addMovieList } from "../../redux-manager/Favorites/selectors";
 
 const Favorites = () => {
   const [title, setTitle] = useState("");
-  const [movies, setMovies] = useState();
 
-  const addMoviesList = useSelector(addMovieList);
-
-  useEffect(() => {
-    setMovies(addMoviesList);
-    console.log(addMoviesList);
-  }, [addMoviesList]);
+  const movies = useSelector(addMovieList);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
+  };
+
+  const deleteBtn = () => {
+    // setMovies(addMoviesList);
   };
   return (
     <div className="favorites">
@@ -29,9 +27,12 @@ const Favorites = () => {
         {movies &&
           movies.map((item) => {
             return (
-              <li key={item.imdbID}>
-                {item.Title} ({item.Year})
-              </li>
+              <div className="favorite__list">
+                <li key={item.imdbID}>
+                  {item.Title} ({item.Year})
+                </li>
+                <button onClick={deleteBtn}>&#10006;</button>
+              </div>
             );
           })}
       </ul>
