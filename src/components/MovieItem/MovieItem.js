@@ -1,7 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addMovieListAction } from "../../redux-manager/Favorites/actions";
 import "./MovieItem.css";
 
-const MovieItem = ({ Title, Year, Poster }) => {
+const MovieItem = (props) => {
+  const { Title, Year, Poster } = props;
+
+  const dispatch = useDispatch();
+
+  const addMovieBtn = () => {
+    dispatch(addMovieListAction(props));
+  };
   return (
     <article className="movie-item">
       <img className="movie-item__poster" src={Poster} alt={Title} />
@@ -9,7 +18,11 @@ const MovieItem = ({ Title, Year, Poster }) => {
         <h3 className="movie-item__title">
           {Title}&nbsp;({Year})
         </h3>
-        <button type="button" className="movie-item__add-button">
+        <button
+          type="button"
+          className="movie-item__add-button"
+          onClick={addMovieBtn}
+        >
           Добавить в список
         </button>
       </div>

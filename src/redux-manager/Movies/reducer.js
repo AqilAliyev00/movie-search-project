@@ -9,11 +9,6 @@ const movieReducer = (state = initialValues, action) => {
     case SET_MOVIE:
       console.log("redux");
       return { ...state, movieList: action.payload };
-    // case DELETE_GOOD:
-    //   return {
-    //     ...state,
-    //     cartGoods: state.cartGoods.filter((good) => good.id !== action.payload),
-    //   };
     default:
       return state;
   }

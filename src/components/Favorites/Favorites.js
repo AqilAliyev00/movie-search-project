@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Favorites.css";
+import { useSelector } from "react-redux";
+import { addMovieList } from "../../redux-manager/Favorites/selectors";
 
 const Favorites = () => {
   const [title, setTitle] = useState("");
-  const [movies, setMovies] = useState([
-    { imdbID: "tt0068646", title: "The Godfather", year: 1972 },
-  ]);
+  const [movies, setMovies] = useState();
+
+  const addMoviesList = useSelector(addMovieList);
+
+  useEffect(() => {
+    setMovies(addMoviesList);
+    console.log(addMoviesList);
+  }, [addMoviesList]);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
   };
-
   return (
     <div className="favorites">
       <input
@@ -20,13 +26,14 @@ const Favorites = () => {
         className="favorites__name"
       />
       <ul className="favorites__list">
-        {movies.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.title} ({item.year})
-            </li>
-          );
-        })}
+        {movies &&
+          movies.map((item) => {
+            return (
+              <li key={item.imdbID}>
+                {item.Title} ({item.Year})
+              </li>
+            );
+          })}
       </ul>
       <button type="button" className="favorites__save">
         Сохранить список
