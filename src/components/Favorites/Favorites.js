@@ -4,12 +4,14 @@ import { useSelector } from "react-redux";
 import { addMovieList } from "../../redux-manager/Favorites/selectors";
 import { useDispatch } from "react-redux";
 import { deleteMovieListAction } from "../../redux-manager/Favorites/actions";
+import { saveMovieListAction } from "../../redux-manager/Favorites/actions";
 import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState(true);
   const [click, setClick] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const movies = useSelector(addMovieList);
 
@@ -24,8 +26,10 @@ const Favorites = () => {
     dispatch(deleteMovieListAction(e.target.id));
   };
 
-  const saveBtn = () => {
+  const saveBtn = (e) => {
     setClick(true);
+    setDisabled(true);
+    dispatch(saveMovieListAction({title, movies: movies.map(movie => movie.imdbID)}));
   };
   return (
     <div className="favorites">
@@ -33,6 +37,7 @@ const Favorites = () => {
         placeholder="Новый список"
         onChange={onChangeTitle}
         value={title}
+        disabled={disabled}
         className="favorites__name"
       />
       <ul className="favorites__list">
@@ -41,7 +46,11 @@ const Favorites = () => {
             return (
               <li key={item.imdbID} className="favorite__list">
                 {item.Title} ({item.Year})
-                <button onClick={deleteBtn} id={item.imdbID}>
+                <button
+                  onClick={deleteBtn}
+                  id={item.imdbID}
+                  disabled={disabled}
+                >
                   &#10006;
                 </button>
               </li>
