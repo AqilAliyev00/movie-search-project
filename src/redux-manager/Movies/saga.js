@@ -7,8 +7,8 @@ import { fetchMovieList } from "../REST";
 function* workerMovies(action) {
   try {
     const data = yield call(fetchMovieList, action.payload);
-    console.log(data);
-    yield put(setMovieListAction(data));
+    console.log(data.Search);
+    yield put(setMovieListAction(data.Search));
     yield select(getMovieListSelector);
   } catch (err) {
     console.error("ERROR", err);

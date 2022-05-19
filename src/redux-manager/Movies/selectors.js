@@ -1,2 +1,2 @@
 export const getMovieListSelector = (state) =>
-  state.movieReducer.movieList.Search;
+  state.movieReducer.movieList;
