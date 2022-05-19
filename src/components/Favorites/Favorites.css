@@ -25,6 +25,9 @@
   font-size: 14px;
   transition: all 0.2s linear;
 }
+.favorites__save:disabled {
+  background-color: #d3d3d3;
+}
 
 .favorites__save:hover {
   cursor: pointer;
