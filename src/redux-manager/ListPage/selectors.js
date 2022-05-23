@@ -1,2 +1,2 @@
-export const getFavoritListId = (state) => state.listPageReducer.favoritListId;
-export const getAllFilms = (state) => state.listPageReducer.movieInfo;
+export const getMoviesListId = (state) => state.listPageReducer.MoviesListId;
+export const getAllMovies = (state) => state.listPageReducer.movieInfo;

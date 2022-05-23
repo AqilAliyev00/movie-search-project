@@ -1,13 +1,13 @@
 import { takeEvery, put, call, select } from "redux-saga/effects";
 import { GET_MOVIE_ID } from "../constants";
-import { saveAllFavoritFilmsAction } from "./actions";
+import { saveAllMoviesAction } from "./actions";
 import { getFavoritmovieId, getMoviesInfo } from "../REST";
-import { getFavoritListId } from "./selectors";
+import { getMoviesListId } from "./selectors";
 
 function* workerFavoritmovieId() {
   try {
-    const favoritListId = yield select(getFavoritListId);
-    const movieId = yield call(getFavoritmovieId, favoritListId);
+    const MoviesListId = yield select(getMoviesListId);
+    const movieId = yield call(getFavoritmovieId, MoviesListId);
     const allMoviesInfo = [];
 
     for (let i = 0; i < movieId.movies.length; i++) {
@@ -15,7 +15,7 @@ function* workerFavoritmovieId() {
       allMoviesInfo.push(movieInfo);
     }
 
-    yield put(saveAllFavoritFilmsAction(allMoviesInfo));
+    yield put(saveAllMoviesAction(allMoviesInfo));
   } catch (err) {
     console.error("ERROR", err);
   }

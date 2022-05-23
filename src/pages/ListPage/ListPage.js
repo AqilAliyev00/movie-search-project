@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllFilms } from "../../redux-manager/ListPage/selectors";
-import { getFavoritFilmsIdAction } from "../../redux-manager/ListPage/actions";
+import { getAllMovies } from "../../redux-manager/ListPage/selectors";
+import { getMoviesIdAction } from "../../redux-manager/ListPage/actions";
 import "./ListPage.css";
 
 const ListPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFavoritFilmsIdAction());
+    dispatch(getMoviesIdAction());
   }, []);
 
-  const movies = useSelector(getAllFilms);
+  const movies = useSelector(getAllMovies);
 
   return (
     <div className="list-page">

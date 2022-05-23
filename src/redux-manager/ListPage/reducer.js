@@ -2,7 +2,7 @@ import { SAVE_ALL_MOVIES, SAVE_MOVIE_ID } from "../constants";
 
 const initialValues = {
   movieInfo: [],
-  favoritListId: null,
+  MoviesListId: null,
 };
 
 const listPageReducer = (state = initialValues, action) => {
@@ -10,7 +10,7 @@ const listPageReducer = (state = initialValues, action) => {
     case SAVE_MOVIE_ID:
       return {
         ...state,
-        favoritListId: action.payload,
+        MoviesListId: action.payload,
       };
     case SAVE_ALL_MOVIES:
       return {
