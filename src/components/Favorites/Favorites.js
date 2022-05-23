@@ -29,7 +29,12 @@ const Favorites = () => {
   const saveBtn = (e) => {
     setClick(true);
     setDisabled(true);
-    dispatch(saveMovieListAction({title, movies: movies.map(movie => movie.imdbID)}));
+    dispatch(
+      saveMovieListAction({
+        title,
+        movies: movies.map((movie) => movie.imdbID),
+      })
+    );
   };
   return (
     <div className="favorites">

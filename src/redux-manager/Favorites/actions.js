@@ -1,11 +1,23 @@
-import { ADD_MOVIE, DELETE_MOVIE, SAVE_MOVIE } from "../constants";
+import {
+  ADD_MOVIE,
+  DELETE_MOVIE,
+  SAVE_MOVIE,
+  SAVE_MOVIE_ID,
+} from "../constants";
 
 export const addMovieListAction = (payload) => ({ type: ADD_MOVIE, payload });
+
 export const deleteMovieListAction = (payload) => ({
   type: DELETE_MOVIE,
   payload,
 });
+
 export const saveMovieListAction = (payload) => ({
   type: SAVE_MOVIE,
+  payload,
+});
+
+export const saveMovieListIdAction = (payload) => ({
+  type: SAVE_MOVIE_ID,
   payload,
 });
