@@ -1,30 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { saveMovieList } from "../../redux-manager/Favorites/selectors";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllMovies } from "../../redux-manager/ListPage/selectors";
+import { getMoviesIdAction } from "../../redux-manager/ListPage/actions";
 import "./ListPage.css";
 
 const ListPage = () => {
-  const [movies, setMovies] = useState([
-    // {
-    //   title: "The Godfather",
-    //   year: 1972,
-    //   imdbID: "tt0068646",
-    // },
-  ]);
-
-  const params = useParams();
-
-  const saveMovies = useSelector(saveMovieList);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(params?.id);
-    setMovies(saveMovies);
-    console.log(saveMovies);
+    dispatch(getMoviesIdAction());
+  }, []);
 
-    // TODO: запрос к сервер на получение списка
-    // TODO: запросы к серверу по всем imdbID
-  });
+  const movies = useSelector(getAllMovies);
 
   return (
     <div className="list-page">
